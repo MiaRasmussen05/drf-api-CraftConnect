@@ -5,7 +5,7 @@ from .models import Comment
 class CommentSerializer(serializers.ModelSerializer):
     """
     Serializer for the Comment model
-    THis adds three extra fields when returning a list of Comment instances
+    This adds three extra fields when returning a list of Comment instances
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
@@ -24,3 +24,11 @@ class CommentSerializer(serializers.ModelSerializer):
             'created_at', 'updated_at', 'post', 
             'content','profile_image'
         ]
+
+
+class CommentDetailSerializer(CommentSerializer):
+    """
+    Serializer for the Comment model used in Detail view
+    Post is a read only field so that we don't have to set it for each update
+    """
+    post = serializers.ReadOnlyField(source='post.id')
