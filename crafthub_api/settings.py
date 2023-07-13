@@ -65,8 +65,8 @@ DEBUG = True
 
 
 
-ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-98xbcs8mgzw.ws-eu101.gitpod.io']
-# ALLOWED_HOSTS = ['localhost', 'drf-api-crafthub.herokuapp.com']
+# ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-98xbcs8mgzw.ws-eu101.gitpod.io']
+ALLOWED_HOSTS = ['localhost', 'drf-api-crafthub.herokuapp.com']
 
 # Application definition
 
