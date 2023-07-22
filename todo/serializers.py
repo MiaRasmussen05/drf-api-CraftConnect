@@ -20,10 +20,18 @@ class IdeaSerializer(serializers.ModelSerializer):
 
 
 class TaskCategorySerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    is_owner = serializers.SerializerMethodField()
+
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
     
     class Meta:
         model = TaskCategory
-        fields = 'name'
+        fields = [
+            'name', 'owner', 'is_owner'
+            ]
     
     def create(self, validated_data):
         try:
@@ -35,8 +43,8 @@ class TaskCategorySerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    category = TaskCategorySerializer()
-    
+    owner = serializers.ReadOnlyField(source='owner.username')
+    is_owner = serializers.SerializerMethodField()
     
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -50,11 +58,16 @@ class TaskSerializer(serializers.ModelSerializer):
                 'Image width larger than 4096px!'
             )
         return value
+    
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
+    
 
     class Meta:
         model = Task
         fields = [
-            'title', 'content', 'created_at',
-            'image', 'category', 'completed_percentage',
-            'completed'
+            'id', 'idea', 'owner', 'is_owner', 
+            'title', 'content', 'created_at', 'image', 
+            'category', 'completed_percentage', 'completed'
         ]

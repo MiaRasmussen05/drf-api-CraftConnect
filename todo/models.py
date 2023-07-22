@@ -16,6 +16,7 @@ class Idea(models.Model):
 
 
 class TaskCategory(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=250, unique=True)
 
     def __str__(self):
@@ -23,7 +24,8 @@ class TaskCategory(models.Model):
 
 
 class Task(models.Model):
-    idea = models.ForeignKey(Idea, related_name='todo_items', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    idea = models.ForeignKey(Idea, related_name='todo_items', on_delete=models.CASCADE, null=True,)
     title = models.CharField(max_length=250)
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
