@@ -7,17 +7,24 @@ from crafthub_api.permissions import IsOwnerOrReadOnly
 
 
 class EventList(generics.ListCreateAPIView):
+    """
+    List events or create an event if logged in.
+    The perform_create method associates the event with the logged in user.
+    """
     serializer_class = EventSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    queryset = Event.objects.all()
+    queryset = Event.objects.annotate(
+        joins_count=Count('joins', distinct=True)
+    ).order_by('-created_at')
     filter_backends = [
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = [
         'cost', 'location',
+        'joins__owner__profile',
     ]
     search_fields = [
         'start_date_time',
@@ -29,7 +36,12 @@ class EventList(generics.ListCreateAPIView):
 
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    To retrieve an event and edit or delete it if you own it.
+    """
     permission_classes = [IsOwnerOrReadOnly, 
         permissions.IsAuthenticatedOrReadOnly]
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
+    queryset = Event.objects.annotate(
+        joins_count=Count('joins', distinct=True)
+    ).order_by('-created_at')

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.utils import timezone
 from .models import Event
+from joins.models import Join
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -8,6 +9,8 @@ class EventSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     id = serializers.ReadOnlyField()
     is_overdue = serializers.SerializerMethodField()
+    join_id = serializers.SerializerMethodField()
+    joins_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -33,6 +36,15 @@ class EventSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('End date and time must be after or equal to the start date and time.')
 
         return data
+    
+    def get_join_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            join = Join.objects.filter(
+                owner=user, event=obj
+            ).first()
+            return join.id if join else None
+        return None
 
     class Meta:
         model = Event
@@ -40,5 +52,6 @@ class EventSerializer(serializers.ModelSerializer):
             'name', 'description', 'owner', 'is_owner', 
             'created_at', 'updated_at', 'start_date_time',
             'end_date_time', 'website_link', 'location', 'cost', 
-            'cover_image', 'id', 'is_overdue'
+            'cover_image', 'id', 'is_overdue', 'join_id', 
+            'joins_count'
         ]
