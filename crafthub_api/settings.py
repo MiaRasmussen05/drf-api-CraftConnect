@@ -66,8 +66,8 @@ DEBUG = 'DEV' in os.environ
 
 
 
-# ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-ho4bvk2wduz.ws-eu102.gitpod.io']
-ALLOWED_HOSTS = ['localhost', 'drf-api-crafthub-d1d89ee1951b.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-ho4bvk2wduz.ws-eu102.gitpod.io']
+# ALLOWED_HOSTS = ['localhost', 'drf-api-crafthub-d1d89ee1951b.herokuapp.com']
 
 # Application definition
 
@@ -98,6 +98,7 @@ INSTALLED_APPS = [
     'followers',
     'todo',
     'events',
+    'joins',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
