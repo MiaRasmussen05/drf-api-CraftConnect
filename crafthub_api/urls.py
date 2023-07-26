@@ -34,4 +34,5 @@ urlpatterns = [
     path('', include('followers.urls')),
     path('', include('todo.urls')),
     path('', include('events.urls')),
+    path('', include('joins.urls')),
 ]
