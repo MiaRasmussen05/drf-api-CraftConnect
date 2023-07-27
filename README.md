@@ -1,39 +1,41 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Craft|Hub Backend
 
-Welcome,
+Welcome to Craft|Hub! This website was made for my last project with Code Institute for my React project. DIY is only getting bigger by the minute and that is what Craft|Hub is all about. To connect, share, inspire. Learn from others and share your own experinces. Follow your favorite users or your friends. Keep an eye out on events. Make your own list to never forget your DIY ideas and get started on them. Comment and like posts and be apart of community.
 
-This is the Code Institute student template for Codeanywhere. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Link to live side on Heroku](https://craftconnect-6c932655ea4f.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **May 11th, 2023**
+[Link to live side fpr the API on Heroku](https://drf-api-crafthub-d1d89ee1951b.herokuapp.com/)
 
-## Codeanywhere Reminders
+![GitHub shield last commit](https://img.shields.io/github/last-commit/MiaRasmussen05/drf-api-CraftConnect?color=red)
+![GitHub shield language count](https://img.shields.io/github/languages/count/MiaRasmussen05/drf-api-CraftConnect?color=orange)
+![GitHub shield contributors](https://img.shields.io/github/contributors/MiaRasmussen05/drf-api-CraftConnect?color=yellow)
+![GitHub shield top language](https://img.shields.io/github/languages/top/MiaRasmussen05/drf-api-CraftConnect?color=brightgree&label=html)
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+# Table of Contents
 
-`python3 -m http.server`
+[Overview](#overview)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+[User Stories](#user-stories)
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+[Flowchart](#flowchart)
+[Database Schema](#database-schema)
 
-`http_server`
+[Technology](#technology)
+- [Languages Used](#languages-used)
+- [Libraries and Programs Used](#libraries-and-programs-used)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+[Testing](#testing)
+- [Automated Testing](#automated-testing)
+- [Manual Test Cases](#manual-test-cases)
+- [Code Validation](#code-validation)
+- [Debugging](#debugging)
+- [Unfixed Bugs](#unfixed-bugs)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+[Deployment](#deployment)
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+[Requirements](#deployment)
 
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
----
-
-Happy coding!
+[Credits](#credits)
+- [Resources Used](#resources-used)
+- [Content](#content)
+- [Honourable mentions](#honourable-mentions)
