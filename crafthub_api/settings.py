@@ -66,8 +66,8 @@ DEBUG = 'DEV' in os.environ
 
 
 
-# ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-ho4bvk2wduz.ws-eu102.gitpod.io']
 ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-ho4bvk2wduz.ws-eu102.gitpod.io']
+# ALLOWED_HOSTS = ['localhost', '8000-miarasmusse-drfapicraft-ho4bvk2wduz.ws-eu102.gitpod.io']
 
 # Application definition
 
