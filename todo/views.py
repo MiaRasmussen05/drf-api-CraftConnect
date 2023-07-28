@@ -52,7 +52,7 @@ class TaskList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwner]
 
     def get_queryset(self):
-        return Task.objects.filter(idea__owner=self.request.user)
+        return Task.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
         idea_id = self.request.data.get('idea')
