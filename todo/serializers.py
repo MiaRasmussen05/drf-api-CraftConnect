@@ -15,7 +15,7 @@ class IdeaSerializer(serializers.ModelSerializer):
         model = Idea
         fields = [
             'owner', 'is_owner', 'created_at',
-            'title', 'description'
+            'id', 'title', 'description'
         ]
 
 
@@ -30,7 +30,7 @@ class TaskCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskCategory
         fields = [
-            'name', 'owner', 'is_owner'
+            'id', 'name', 'owner', 'is_owner'
             ]
 
 
