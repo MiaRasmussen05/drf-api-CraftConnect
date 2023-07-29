@@ -32,10 +32,14 @@ class Task(models.Model):
     category = models.ForeignKey(TaskCategory, blank=True, null=True, on_delete=models.SET_NULL)
     completed_percentage = models.IntegerField(default=0)
     completed = models.BooleanField(default=False, blank=True)
-    todos = models.ManyToManyField('self', blank=True, symmetrical=False)
 
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
         return self.title
+
+
+class TaskContent(models.Model):
+    task = models.ForeignKey(Task, related_name='contents', on_delete=models.CASCADE)
+    content = models.TextField()

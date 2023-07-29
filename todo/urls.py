@@ -10,4 +10,6 @@ urlpatterns = [
     
     path('tasks/', views.TaskList.as_view()),
     path('tasks/<int:pk>/', views.TaskDetail.as_view()),
+    path('tasks/<int:task_id>/contents/', views.TaskContentView.as_view(), name='task-content-create'),
+    path('tasks/<int:task_id>/contents/<int:pk>/', views.TaskContentDetail.as_view(), name='task-content-detail'),
 ]

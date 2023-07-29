@@ -1,7 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics, permissions
-from .models import Idea, TaskCategory, Task
-from .serializers import IdeaSerializer, TaskCategorySerializer, TaskSerializer
+from rest_framework import generics, permissions, status
+from rest_framework.response import Response
+from .models import Idea, TaskCategory, Task, TaskContent
+from .serializers import IdeaSerializer, TaskCategorySerializer, TaskSerializer, TaskContentSerializer
 from crafthub_api.permissions import IsOwnerOrReadOnly
 
 
@@ -63,14 +64,29 @@ class TaskList(generics.ListCreateAPIView):
             except Idea.DoesNotExist:
                 raise serializers.ValidationError("Invalid Idea ID or Idea does not belong to the user.")
         serializer.save(owner=self.request.user, idea=idea)
-    
-    def get_serializer_context(self):
-        context = super(TaskList, self).get_serializer_context()
-        context['todos'] = Task.objects.filter(owner=self.request.user)
-        return context
 
 
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwner]
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+
+class TaskContentView(generics.ListCreateAPIView):
+    serializer_class = TaskContentSerializer
+
+    def get_queryset(self):
+        task_id = self.kwargs['task_id']
+        return TaskContent.objects.filter(task__id=task_id)
+
+    def post(self, request, task_id):
+        task = generics.get_object_or_404(Task, pk=task_id)
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save(task=task)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class TaskContentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = TaskContent.objects.all()
+    serializer_class = TaskContentSerializer
