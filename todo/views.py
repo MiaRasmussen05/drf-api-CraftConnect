@@ -63,6 +63,12 @@ class TaskList(generics.ListCreateAPIView):
             except Idea.DoesNotExist:
                 raise serializers.ValidationError("Invalid Idea ID or Idea does not belong to the user.")
         serializer.save(owner=self.request.user, idea=idea)
+    
+    def get_serializer_context(self):
+        context = super(TaskList, self).get_serializer_context()
+        context['todos'] = Task.objects.filter(owner=self.request.user)
+        return context
+
 
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwner]

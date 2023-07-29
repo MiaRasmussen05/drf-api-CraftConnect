@@ -37,6 +37,7 @@ class TaskCategorySerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
+    todos = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -47,5 +48,5 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'idea', 'owner', 'is_owner', 
             'title', 'content', 'created_at', 'category',
-            'completed_percentage', 'completed'
+            'completed_percentage', 'completed', 'todos'
         ]
