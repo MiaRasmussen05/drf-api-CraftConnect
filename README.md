@@ -43,7 +43,28 @@ Welcome to Craft|Hub! This website was made for my last project with Code Instit
 This site was developed because of my love creating. I do it on a daily base from baking to coding and everything in between. So to get more people out there and get them into DIY and learning from others I have created this site.
 
 # User Stories
-All the user stories where managed in the Kanban board which was created inside GitHub Projects. User stories were then prioritized with the MoSCoW approach and the labels on the Kanban board where used to manage this. The Kanban board was split into three columns to manage the various stages of development:
+
+*Navigation & Authentication*
+
+  - Navbar: As a user I can see the navbar on every page so that I can easily move around the app.
+  - Authentication - Sign up: As a user I can register for a new account so that I can post, share, view and follow people and content on the app.
+  - Authentication - login/logout: As a user I can login as well as logout of my private account so that I can use the app with my credentials when needed.
+  - Navbar: Conditional rendering: As a visitor I can see the sign up and login button so that I can decide to sign up or login.
+  
+  *Pages*
+  
+  - Profiles: As a user I can view other profiles and avatars so that I can see there posts and learn more about the person.
+  - Posts: As a user I can create a post or event to share so that others on the app can read about it as well.
+  - Search bar: As a user I can search for users, posts and events with keywords so that I can find what or who I am looking for quicker.
+  - Popular profiles: As a user I can see a list of the top 5 most followed so that I can keep up to date with who is popular and who I should follow.
+  - Comments: As a user I can view comments from other users so that I can stay in touch with the community.
+  - Following: As a user I can follow and unfollow other users so that I can keep up to date on that user as well as see their posts on my page.
+  - Tasks: As a user I can make my own task list so that I can keep every in a list for my next DIY project.
+  - Events: As a user I can create and see event so that follow along to what is happening that I might want to join.
+  - Joining: As a user I can join or leave and event so that I can decided to show my exactment for not for an event.
+  - Ideas: As a user I can make a list of ideas so that won't forget any project ideas that comes to mind.
+
+  All the user stories where managed in the Kanban board which was created inside GitHub Projects. User stories were then prioritized with the MoSCoW approach and the labels on the Kanban board where used to manage this. The Kanban board was split into three columns to manage the various stages of development:
 
   1. To do: This item hasn't been started yet.
   2. In Progress: This item is actively being worked on in the Backend and Frontend.
@@ -76,6 +97,7 @@ All the user stories where managed in the Kanban board which was created inside 
 # Testing
 
   ## Manual Test Cases
+
 
   ## Code Validation
 
