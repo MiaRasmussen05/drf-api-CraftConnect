@@ -82,3 +82,46 @@ All the user stories where managed in the Kanban board which was created inside 
   ## Bugs
 
   There were no unfixed bugs.
+
+# Deployment
+
+# Requirements
+
+  - asgiref==3.7.2
+  - cloudinary==1.33.0
+  - dj-database-url==0.5.0
+  - dj-rest-auth==2.1.9
+  - Django==3.2.20
+  - django-allauth==0.44.0
+  - django-cloudinary-storage==0.3.0
+  - django-cors-headers==4.2.0
+  - django-filter==23.2
+  - djangorestframework==3.14.0
+  - djangorestframework-simplejwt==5.2.2
+  - gunicorn==20.1.0
+  - oauthlib==3.2.2
+  - Pillow==10.0.0
+  - psycopg2==2.9.6
+  - PyJWT==2.7.0
+  - python3-openid==3.2.0
+  - pytz==2023.3
+  - requests-oauthlib==1.3.1
+  - sqlparse==0.4.4
+
+# Credits
+
+  ## Resources Used
+
+  - Code Institutes 'Django Rest Framework Walkthrough Videos'
+  - Code Institutes 'Moments Walkthrough Videos'
+  - React Bootstrap documentation
+  - W3C Schools 
+  - Stack Overflow for enquiries relating to React.js.
+  - Slack
+
+  ## Honourable mentions
+
+  - My mentor Rohit for the support and helping me understand what I needed to do.
+  - All my favorite people that have gone through and tested my site whenever I asked.
+  - Martin CI Tutor for helping me find out my config vars need to be updated.
+  - Rebecca CI Tutor for going over 404 error for problems in my settings file for my deployed DRF API.
