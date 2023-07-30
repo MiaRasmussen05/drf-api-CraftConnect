@@ -1,8 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
-from .models import Idea, TaskCategory, Task, TaskContent
-from .serializers import IdeaSerializer, TaskCategorySerializer, TaskSerializer, TaskContentSerializer
+from .models import Idea, TaskCategory, Task, Todo, TaskContent
+from .serializers import IdeaSerializer, TaskCategorySerializer, TaskSerializer, TodoSerializer, TaskContentSerializer
 from crafthub_api.permissions import IsOwnerOrReadOnly
 
 
@@ -70,6 +70,24 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwner]
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+
+class TodoList(generics.ListCreateAPIView):
+    serializer_class = TodoSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwner]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        return Todo.objects.filter(owner=self.request.user)
+
+
+class TodoDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsOwner]
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
 
 
 class TaskContentView(generics.ListCreateAPIView):

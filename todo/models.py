@@ -40,6 +40,18 @@ class Task(models.Model):
         return self.title
 
 
+class Todo(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
+
+
 class TaskContent(models.Model):
     task = models.ForeignKey(Task, related_name='contents', on_delete=models.CASCADE)
     content = models.TextField()
