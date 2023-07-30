@@ -13,11 +13,10 @@ Welcome to Craft|Hub! This website was made for my last project with Code Instit
 
 # Table of Contents
 
-[Overview](#overview)
+[Overview](#overview) 
 
 [User Stories](#user-stories)
 
-[Flowchart](#flowchart)
 [Database Schema](#database-schema)
 
 [Technology](#technology)
@@ -28,8 +27,7 @@ Welcome to Craft|Hub! This website was made for my last project with Code Instit
 - [Automated Testing](#automated-testing)
 - [Manual Test Cases](#manual-test-cases)
 - [Code Validation](#code-validation)
-- [Debugging](#debugging)
-- [Unfixed Bugs](#unfixed-bugs)
+- [Bugs](#bugs)
 
 [Deployment](#deployment)
 
@@ -39,3 +37,48 @@ Welcome to Craft|Hub! This website was made for my last project with Code Instit
 - [Resources Used](#resources-used)
 - [Content](#content)
 - [Honourable mentions](#honourable-mentions)
+
+# Overview
+
+This site was developed because of my love creating. I do it on a daily base from baking to coding and everything in between. So to get more people out there and get them into DIY and learning from others I have created this site.
+
+# User Stories
+All the user stories where managed in the Kanban board which was created inside GitHub Projects. User stories were then prioritized with the MoSCoW approach and the labels on the Kanban board where used to manage this. The Kanban board was split into three columns to manage the various stages of development:
+
+  1. To do: This item hasn't been started yet.
+  2. In Progress: This item is actively being worked on in the Backend and Frontend.
+  3. Done: All tasks have been completed.
+
+# __Databases__
+
+  Data normalisation to structure each model to help reduce data redundancy and improve data integrity. This was used after setting out all of the information required for the site.
+
+  ![Databases](https://imgur.com/LlYfNNi.png)
+
+# Technology
+
+ ## Languages Used
+
+  - Python
+  - SQL (Postgres)
+
+  ## Libraries and Programs Used
+
+  - __Git__ - Was used for version control, the Gitpod terminal to commit and push to GitHub.
+  - __GitHub__ - Was used to store the project code and display the project in GitHub Pages.
+  - __Heroku__: Where used for Deployment.
+  - __Cloudinary__: Where used to save static media files.
+  - __ElephantSQL__: Where used for PostgreSQL database hosting.
+  - __Django/Django REST Framework__: Where used for Backend database and API.
+  - __Google Chrome, Microsoft Edge, Mozilla Firefox, Safari__: Where all used for site testing - on alternative browsers.
+  - __Chrome Dev Tools__: Were used to test and troubleshoot the webpage as well as fix problems with responsive design and styling.
+
+# Testing
+
+  ## Manual Test Cases
+
+  ## Code Validation
+
+  ## Bugs
+
+  There were no unfixed bugs.
