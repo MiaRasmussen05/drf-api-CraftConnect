@@ -85,6 +85,136 @@ All the user stories where managed in the Kanban board which was created inside 
 
 # Deployment
 
+  __Create Database__
+
+  1. In ElepahantSQL, click "Create New instance" button.
+  2. Set up the Tiny Turtle plan, and then select the nearest datacenter to you and click the "Review" button.
+  3. Copy the new DATABASE_URL.
+
+  __Connect Cloudinary__
+
+  1. In the terminal: install dj-cloudinary-storage.
+  2. And then add CLOUDINARY_URL to the env.py file.
+  3. In the settings.py, update the apps to include cloudinary-storage.
+  4. Below the import statements in settings, add the following variables for Cloudinary:
+```
+CLOUDINARY_STORAGE = {
+    'CLOUDINARY_URL': os.environ.ger('CLOUDINARY_URL')
+}
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinartStorage'
+```
+  5. Below INSTALLED_APPS in settings, set site ID:
+```
+SITE_ID = 1
+```
+
+  __Create the Heroku App__
+
+  1. On the Heroku dashboard, click the "Create a new app" button.
+  2. Go to the config vars in settings and copy paste in the new DATABASE_URL and CLOUDINARY_URL.
+
+  __Connect Project to ElepahantSQL__
+
+  1. In the terminal: install dj_database_url and psycopg2.
+  2. In settings.py: import dj-database_url and import os.
+  3. Now updated the DATABASES variable to:
+```
+DATABASES = {
+    'default': ({
+       'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    )
+    )
+}
+```
+  4. Add in the env.py:  
+  5. os.environ.setdefault("DATABASE_URL", "<your PostgreSQL URL here>")
+  6. Temporarily comment out the environment variable to connect gitpod to your external database.
+  7. In ElepahantSQL browser, check if the database is now connected.
+  8. If connected, migrate the database and then create a superuser.
+
+  __Deploy on Heroku__
+
+  *In gitpod workspace*
+
+  1. In the terminal, install gunicorn.
+  2. Remeber to update the requirements.txt file.
+  3. Now create the Procfile.
+  4. In settings.py 
+
+   - Add the Heroku app to the ALLOWED_HOSTS variable:
+    ```
+    os.environ.get('ALLOWED_HOST'),
+    'localhost',
+    ``` 
+    - Add corsheaders to INSTALLED_APPS
+    - Add corsheaders middleware to the top of MIDDLEWARE:
+  ```
+  'corsheaders.middleware.CorsMiddleware',
+  ```
+- Set ALLOWED_ORIGIN to make network requests
+- Below BASE_DIR, create the REST_FRAMEWORK, and include page pagination to improve app loading times, pagination count, and date/time format:
+  ```
+  REST_FRAMEWORK = {
+      'DEFAULT_AUTHENTICATION_CLASSES': [(
+          'rest_framework.authentication.SessionAuthentication'
+          if 'DEV' in os.environ
+          else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+      )],
+      'DEFAULT_PAGINATION_CLASS':
+          'rest_framework.pagination.PageNumberPagination',
+      'PAGE_SIZE': 10,
+      'DATETIME_FORMAT': '%d %b %Y',
+  }
+  ```
+    - Set the default renderer to JSON:
+  ```
+  if 'DEV' not in os.environ:
+      REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+          'rest_framework.renderers.JSONRenderer',
+      ]
+  ```
+    - Add the following, setting the JWT_AUTH_SAMESITE to 'None'
+  ```
+  REST_USE_JWT = True
+  JWT_AUTH_SECURE = True
+  JWT_AUTH_COOKIE = 'my-app-auth'
+  JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+  JWT_AUTH_SAMESITE = 'None'
+  ```
+    - Remove the value for SECRET_KEY and replace with: SECRET_KEY = os.getenv('SECRET_KEY')
+    - Below ALLOWED_HOST, added the CORS_ALLOWED variable.
+  ```
+  if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+
+  if 'CLIENT_ORIGIN_DEV' in os.environ:
+      extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+      CORS_ALLOWED_ORIGIN_REGEXES = [
+          rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+      ]
+  ```
+    - Set the debug value to True if the DEV environment variable exists:
+  ```
+  DEBUG = 'DEV' in os.environ
+  ```
+
+  5. In env.py
+  - Add SECRET_KEY
+  - Comment DEV back in 
+  6. Update the requirements.txt file
+  7. Migrate the database
+  8. Add, commit and push the code to github 
+
+  *In Heroku*
+  1. Add SECRET_KEY, ALLOWED_HOST, CLIENT_ORIGIN and CLIENT_ORIGIN_DEV to the config vars
+  2. Then manually re-deploy the app to github.
+
 # Requirements
 
   - asgiref==3.7.2
