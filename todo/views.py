@@ -17,7 +17,7 @@ class IdeaList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-    
+
     def get_queryset(self):
         return Idea.objects.filter(owner=self.request.user)
 
@@ -86,6 +86,7 @@ class TaskContentView(generics.ListCreateAPIView):
             serializer.save(task=task)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class TaskContentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TaskContent.objects.all()

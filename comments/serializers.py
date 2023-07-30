@@ -18,7 +18,7 @@ class CommentSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-    
+
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
 
@@ -28,9 +28,9 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = [
-            'id', 'profile_id', 'owner', 'is_owner', 
-            'created_at', 'updated_at', 'post', 
-            'content','profile_image'
+            'id', 'profile_id', 'owner', 'is_owner',
+            'created_at', 'updated_at', 'post',
+            'content', 'profile_image'
         ]
 
 

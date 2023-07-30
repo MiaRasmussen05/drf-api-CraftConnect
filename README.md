@@ -79,6 +79,8 @@ All the user stories where managed in the Kanban board which was created inside 
 
   ## Code Validation
 
+  - CI Python Linter: No errors were found when passing through the CI Python Linter. And only a warnings for lines that where to long came up.
+
   ## Bugs
 
   There were no unfixed bugs.

@@ -11,7 +11,8 @@ class Event(models.Model):
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    start_date_time = models.DateTimeField(blank=False,
+    start_date_time = models.DateTimeField(
+        blank=False,
         validators=[
             MinValueValidator(timezone.now() + timezone.timedelta(days=1)),
             MaxValueValidator(timezone.now() + timezone.timedelta(days=1100))
@@ -21,7 +22,9 @@ class Event(models.Model):
     location = models.CharField(max_length=250, blank=True, null=True)
     website_link = models.URLField(max_length=250, blank=True, null=True)
     cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    cover_image = models.ImageField(upload_to='images/', default='../default_post_ed2doq', blank=True, null=True)
+    cover_image = models.ImageField(
+        upload_to='images/', default='../default_post_ed2doq',
+        blank=True, null=True)
 
     def clean(self):
         if self.start_date_time and self.end_date_time:
